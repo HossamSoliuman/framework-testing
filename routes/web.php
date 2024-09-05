@@ -5,6 +5,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TempFileController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Models\Article;
 use Carbon\Carbon;
@@ -64,7 +65,9 @@ Route::get('verified/{code}/{phone}', function ($code, $phone) {
     return $code . ' ' . $phone;
 })->name('verified');
 
-Route::get('article',function(){
-    $article=Article::create();
+Route::get('article', function () {
+    $article = Article::create();
     return $article->id;
 });
+
+Route::get('test', TestController::class);
