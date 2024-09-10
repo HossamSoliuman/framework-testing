@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TempFileController;
 use App\Http\Controllers\TestController;
@@ -71,3 +72,5 @@ Route::get('article', function () {
 });
 
 Route::get('test', TestController::class);
+
+Route::resource('posts', PostController::class);
