@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('app-content')
-    <div class="flex">
-        @include('layouts.sidebar')
-        <main class="flex-1 px-6 py-4">
-            @yield('content')
-        </main>
+    <div class="mx-auto">
+        <div class="flex ">
+            <!-- Sidebar -->
+            <div class="w-1/6">
+                @include('layouts.sidebar')
+            </div>
+
+            <!-- Main content -->
+            <div class="w-full">
+                @yield('content')
+            </div>
+        </div>
     </div>
 @endsection
