@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-
-class Post extends Model
+class QR extends Model
 {
     use HasFactory;
+    public $table='qrs';
 
-    protected $fillable = [
-        'name',
-        'likes_count',
-    ];
+    protected $fillable = ['uid', 'status'];
 }

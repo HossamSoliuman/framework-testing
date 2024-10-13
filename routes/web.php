@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\QrController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TempFileController;
 use App\Http\Controllers\TestController;
@@ -25,6 +26,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/generate-qr', [QrController::class, 'generate'])->name('generate-qr');
+Route::get('/scan-qr', [QrController::class, 'scan'])->name('scan-qr');
+Route::get('/check-qr/{uid}', [QrController::class, 'check'])->name('check-qr');
+
+Route::get('test-qr', function () {
+    $qrCode = QrCode::format('png')->size(300)->generate($data);
+    return response($qrCode, 200)->header('Content-Type', 'image/png');
+});
 
 Auth::routes([
     'register' => false

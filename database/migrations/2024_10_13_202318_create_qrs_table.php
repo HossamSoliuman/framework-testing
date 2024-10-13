@@ -6,28 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('qrs', function (Blueprint $table) {
             $table->id();
-			$table->textk('name');
-			$table->integer('likes_count')->default(0);
+            $table->uuid('uid')->unique();
+            $table->string('status');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('qrs');
     }
 };

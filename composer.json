@@ -20,7 +20,7 @@
         "paypal/paypal-payouts-sdk": "^1.0",
         "paypal/rest-api-sdk-php": "^1.6",
         "paytabscom/laravel_paytabs": "^1.7",
-        "simplesoftwareio/simple-qrcode": "*",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "twilio/sdk": "^8.2"
     },
     "require-dev": {
