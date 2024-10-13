@@ -185,6 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Paytabscom\Laravel_paytabs\PaypageServiceProvider::class,
 
         /*
          * Application Service Providers...

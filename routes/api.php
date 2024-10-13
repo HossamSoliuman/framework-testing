@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('update', [AuthenticationController::class, 'update']);
     });
 });
+
+
+Route::get('twilio', function (Request $request) {
+    // Retrieve the incoming SMS data from Twilio
+    $from = $request->input('From');  // Sender's phone number
+    $body = $request->input('Body');  // Content of the message
+
+    // Log the details of the SMS
+    Log::info("Message received from $from: $body");
+
+    // Optionally return a response to Twilio
+    return response('Message received', 200);
+});
+

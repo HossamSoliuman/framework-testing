@@ -19,6 +19,8 @@
         "league/csv": "^9.11",
         "paypal/paypal-payouts-sdk": "^1.0",
         "paypal/rest-api-sdk-php": "^1.6",
+        "paytabscom/laravel_paytabs": "^1.7",
+        "simplesoftwareio/simple-qrcode": "*",
         "twilio/sdk": "^8.2"
     },
     "require-dev": {

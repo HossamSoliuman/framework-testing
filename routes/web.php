@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\PayPalController;
@@ -74,3 +75,7 @@ Route::get('article', function () {
 Route::get('test', TestController::class);
 
 Route::resource('posts', PostController::class);
+
+Route::get('/checkout', [CheckoutController::class, 'createPayment'])->name('checkout.create');
+Route::get('/checkout/return', [CheckoutController::class, 'return'])->name('checkout.return');
+Route::post('/checkout/callback', [CheckoutController::class, 'handleCallback'])->name('checkout.callback');

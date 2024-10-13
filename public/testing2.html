@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة إعادة التصميم - OTP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .container h1 {
+            color: #white;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            color: #757575;
+            margin-bottom: 30px;
+        }
+
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .otp-container input {
+            width: 60px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 24px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .alphabet-pad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 أعمدة متساوية العرض */
+            gap: 10px;
+        }
+
+        .alphabet-pad button {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .alphabet-pad button:hover {
+            background-color: #00bfa5;
+            color: white;
+        }
+
+        .alphabet-pad .delete-button {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            grid-column: span 5;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: #blue;
+        }
+
+        .alphabet-pad .confirm-button {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            grid-column: span 5; /* يمتد عبر أربعة أعمدة لتغطية المساحة المتبقية */
+            transition: background-color 0.3s ease;
+        }
+
+        .confirm-button:hover {
+            background-color: #blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>كوبون زوون</h1>
+        <p>كل يوم مفاجأة جديدة</p>
+        <div class="otp-container">
+            <input type="text" maxlength="1" placeholder="0">
+            <input type="text" maxlength="1" placeholder="0">
+            <input type="text" maxlength="1" placeholder="0">
+            <input type="text" maxlength="1" placeholder="0">
+        </div>
+        <div class="alphabet-pad">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>0</button>
+            <!-- الأزرار في نفس الصف -->
+            <button class="delete-button">مسح</button>
+            <button class="confirm-button">تأكيد</button>
+        </div>
+    </div>
+
+</body>
+</html>
