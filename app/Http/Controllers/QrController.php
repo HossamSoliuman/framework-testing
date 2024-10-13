@@ -14,10 +14,10 @@ class QrController extends Controller
         $uid = Str::uuid();
         $status = 'valid';
 
-        QR::create([
-            'uid' => $uid,
-            'status' => $status,
-        ]);
+        // QR::create([
+        //     'uid' => $uid,
+        //     'status' => $status,
+        // ]);
 
         $qrCode = QrCode::size(200)->generate($uid);
 
@@ -33,8 +33,8 @@ class QrController extends Controller
 
     public function check($uid)
     {
-        $qr = QR::where('uid', $uid)->first();
-        if ($qr && $qr->status === 'valid') {
+        $qr = '';
+        if ($qr ) {
             return response()->json(['status' => 'valid']);
         }
         return response()->json(['status' => 'not valid']);

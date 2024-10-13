@@ -32,10 +32,6 @@ Route::get('/generate-qr', [QrController::class, 'generate'])->name('generate-qr
 Route::get('/scan-qr', [QrController::class, 'scan'])->name('scan-qr');
 Route::get('/check-qr/{uid}', [QrController::class, 'check'])->name('check-qr');
 
-Route::get('test-qr', function () {
-    $qrCode = QrCode::format('png')->size(300)->generate($data);
-    return response($qrCode, 200)->header('Content-Type', 'image/png');
-});
 
 Auth::routes([
     'register' => false
