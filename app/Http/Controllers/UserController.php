@@ -2,16 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Services\FirebaseService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    protected $firebaseService;
+
+    public function __construct(FirebaseService $firebaseService)
     {
-        $users = User::paginate(5);
+        $this->firebaseService = $firebaseService;
+    }
 
+    public function createUser(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+        ]);
 
-        return view('users.index', compact('users'));
+        $this->firebaseService->addUser($validated);
+        return response()->json(['status' => 'success', 'message' => 'User created successfully.']);
+    }
+
+    public function getUsers()
+    {
+        return response()->json($this->firebaseService->getUsers());
     }
 }

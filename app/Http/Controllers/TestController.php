@@ -15,13 +15,6 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = 'https://example.com';
-        $qrCode = QrCode::format('png')->size(200)->generate($data);
-        $qrCodeBase64 = base64_encode($qrCode);
-
-        return Post::create([
-            'name' => $qrCodeBase64,
-        ]);
-        return view('qr_code', compact('qrCode'));
+        return 'test';
     }
 }

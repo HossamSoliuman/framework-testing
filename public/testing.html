@@ -1,193 +1,218 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة إعادة التصميم - كود العرض</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Bitcoin Investment - Home</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            background-color: #f9f9f9;
+            background-color: #f5f6fa;
+        }
+
+        .dashboard {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
-        .container {
-            background-color: #fff;
+        .sidebar {
+            width: 250px;
+            background-color: #2e3b4e;
+            color: #ffffff;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .container h1 {
-            color: #00bfa5;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        .container p {
-            color: #757575;
+        .logo {
+            width: 150px;
             margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            font-size: 16px;
+            background-color: #ffffff;
             text-align: center;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
+            padding: 10px;
         }
 
-        input[type="text"]:hover {
-            border-color: black;
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
         }
 
-        .alphabet-pad {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-top: 20px;
+        .nav-link {
+            color: #ffffff;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
         }
 
-        .alphabet-pad button {
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-            background-color: #f1f1f1;
+        .nav-link:hover {
+            background-color: #1e2a38;
+        }
+
+        .support {
+            margin-top: auto;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .support button {
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-sizing: border-box;
         }
 
-        .alphabet-pad button:hover {
-            background-color: #0d8464;
-            color: white;
+        .content {
+            flex: 1;
+            padding: 20px;
         }
 
-        .alphabet-pad .delete-button {
-            background-color:#f1f1f1;
-            color: black;
-            grid-column: span 1;
-            transition: background-color 0.3s ease;
+        .header h1 {
+            color: #333;
         }
 
-        .delete-button:hover {
-            background-color: #ff4d4d;
+        .balance-section, .chart-section, .payouts-section {
+            background-color: #ffffff;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .alphabet-pad .confirm-button {
-            background-color:#37bca2;
-            color: white;
-            grid-column: 3 / -1;
-            transition: background-color 0.3s ease;
+        .balance-section h2, .chart-section h2, .payouts-section h2 {
+            color: #333;
         }
 
-        .confirm-button:hover {
-            background-color:  #0d8464;
+        .buttons {
+            display: flex;
+            gap: 10px;
         }
 
-        /* Media Queries for responsiveness */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-
-            .container h1 {
-                font-size: 20px;
-            }
-
-            .container p {
-                font-size: 14px;
-            }
-
-            input[type="text"] {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            .alphabet-pad {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 5px;
-            }
-
-            .alphabet-pad button {
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .alphabet-pad .confirm-button {
-                grid-column: 4 / -1;
-            }
+        .buttons button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
         }
 
-        @media (max-width: 400px) {
-            .alphabet-pad {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 5px;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-            .alphabet-pad .confirm-button {
-                grid-column: 1 / -1;
-            }
+        thead {
+            background-color: #f2f2f2;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">Logo</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">My Payments</a>
+                <a href="#" class="nav-link">Help Center</a>
+                <a href="#" class="nav-link">Profile Settings</a>
+            </nav>
+            <div class="support">
+                <p>Need help?</p>
+                <button>Go to Support</button>
+            </div>
+        </aside>
 
-    <div class="container">
-        <img src="logo.png" style="max-width: 150px;" alt="">
-        <br>
-        <img src="text.png" style="max-width: 200px;" alt="">
-       
-        <input type="text" placeholder="أدخل كود العرض">
-        <input type="text" placeholder="رقم الهاتف (9 أرقام)">
-        <div class="alphabet-pad">
-            <button>A</button>
-            <button>B</button>
-            <button>C</button>
-            <button>D</button>
-            <button>E</button>
-            <button>F</button>
-            <button>G</button>
-            <button>H</button>
-            <button>I</button>
-            <button>J</button>
-            <button>K</button>
-            <button>L</button>
-            <button>M</button>
-            <button>N</button>
-            <button>O</button>
-            <button>P</button>
-            <button>Q</button>
-            <button>R</button>
-            <button>S</button>
-            <button>T</button>
-            <button>U</button>
-            <button>V</button>
-            <button>W</button>
-            <button>X</button>
-            <button>Y</button>
-            <button>Z</button>
-            <button class="delete-button">
-                <i class="fa-light fa-delete-left"></i>
-                 </button>
-            <button class="confirm-button">تأكيد</button>
-        </div>
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <h1>Hello, User</h1>
+            </header>
+
+            <!-- Balance Section -->
+            <section class="balance-section">
+                <h2>Balance</h2>
+                <p>Balance My Invest: <span>$1234.56</span></p>
+                <p>Balance My Mining of BTC: <span>$0.06</span> per kW</p>
+                <div class="buttons">
+                    <button>Top Up</button>
+                    <button>Withdraw</button>
+                </div>
+            </section>
+
+            <!-- BTC/USD Chart Section -->
+            <section class="chart-section">
+                <h2>BTC / USD</h2>
+                <canvas id="priceChart"></canvas>
+            </section>
+
+            <!-- Pool Payouts Section -->
+            <section class="payouts-section">
+                <h2>Pool Payouts</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>TX_ID</th>
+                            <th>Amount</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>26.08.2024</td>
+                            <td>7f6e3356...a9eeef22</td>
+                            <td>₿0.000112941</td>
+                            <td>$71.69</td>
+                        </tr>
+                        <!-- Additional rows as needed -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
     </div>
 
+    <script>
+        // Load Price Chart
+        const loadPriceChart = () => {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['12:00', '13:00', '14:00', '15:00', '16:00'],
+                    datasets: [{
+                        label: 'BTC / USD',
+                        data: [63500, 63750, 63400, 63000, 62800],
+                        borderColor: '#ff7f00',
+                        backgroundColor: 'rgba(255, 127, 0, 0.2)',
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            display: true
+                        },
+                        y: {
+                            display: true
+                        }
+                    }
+                }
+            });
+        };
+
+        // Initialize
+        loadPriceChart();
+    </script>
 </body>
 </html>

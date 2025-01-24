@@ -1,20 +1,25 @@
 <?php
 
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ChunkFileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OtpController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QrController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TempFileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
 use App\Models\Article;
+use BaconQrCode\Encoder\QrCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +32,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/upload/chunk', [UploadController::class, 'uploadChunk'])->name('upload.chunk');
+Route::post('/upload/complete', [UploadController::class, 'completeUpload'])->name('upload.complete');
+Route::get('/upload', [UploadController::class, 'showForm'])->name('upload.form');
+
+Route::view('realtime-users', 'realtime-users');
+Route::get('/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
+Route::get('/payment/error', [PaymentController::class, 'error'])->name('payment.error');
+
 
 Route::get('/generate-qr', [QrController::class, 'generate'])->name('generate-qr');
 Route::get('/scan-qr', [QrController::class, 'scan'])->name('scan-qr');
 Route::get('/check-qr/{uid}', [QrController::class, 'check'])->name('check-qr');
 
+Route::get('url', function () {
+    $qrCode = FacadesQrCode::size(200)->generate('https://temp-testing.smaster.live/generate-qr');
+    return $qrCode;
+});
 
 Auth::routes([
     'register' => false

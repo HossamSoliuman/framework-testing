@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Log;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/users', [UserController::class, 'createUser']);
+Route::get('/users', [UserController::class, 'getUsers']);
 
 Route::post('login', [AuthenticationController::class, 'login']);
 //Route::post('register', [AuthenticationController::class, 'register']);
