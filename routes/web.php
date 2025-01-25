@@ -13,11 +13,13 @@ use App\Http\Controllers\TempFileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserController;
+use App\Mail\WelcomeEmail;
 use App\Models\Article;
 use BaconQrCode\Encoder\QrCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
 
@@ -32,6 +34,16 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode as FacadesQrCode;
 |
 */
 
+Route::get('test-email', function () {
+    $user = (object) [
+        'name' => 'John Doe',
+        'email' => 'user@example.com',
+    ];
+
+    Mail::to($user->email)->queue(new WelcomeEmail($user));
+    $now = Carbon::now()->format('H:m D');
+    return 'sent' . $now;
+});
 Route::post('/upload/chunk', [UploadController::class, 'uploadChunk'])->name('upload.chunk');
 Route::post('/upload/complete', [UploadController::class, 'completeUpload'])->name('upload.complete');
 Route::get('/upload', [UploadController::class, 'showForm'])->name('upload.form');
